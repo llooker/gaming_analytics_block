@@ -1,41 +1,26 @@
 view: raw_events {
-  sql_table_name: gaming_demo_dev.raw_events ;;
+  sql_table_name: gaming_demo_dev.raw_events ;; # this will come from your database - replace this file :) 
 
   dimension: unique_event_id {
     primary_key: yes
     type: string
-    sql: ${TABLE}.unique_event_id ;;
+    sql: 'abcdefg' ;;
   }
 
   dimension: ad_revenue {
     type: number
-    sql: ${TABLE}.ad_revenue ;;
-  }
-
-  dimension: campaign_id {
-    type: string
-    sql: ${TABLE}.campaign_id ;;
+    sql: '0.2' ;;
   }
 
   dimension: campaign_name {
     type: string
-    sql: ${TABLE}.campaign_name ;;
-  }
-
-  dimension: continent {
-    type: string
-    sql: ${TABLE}.continent ;;
-  }
-
-  dimension: region {
-    type: string
-    sql: ${TABLE}.region ;;
+    sql: 'campaign_1' ;;
   }
 
   dimension: country {
     type: string
     map_layer_name: countries
-    sql: ${TABLE}.country ;;
+    sql: 'USA' ;;
   }
 
   dimension: device_brand {
@@ -74,47 +59,42 @@ view: raw_events {
       quarter,
       year
     ]
-    sql: ${TABLE}.event ;;
+    sql: CURRENT_TIMESTAMP() ;;
   }
 
   dimension: event_name {
     type: string
-    sql: ${TABLE}.event_name ;;
+    sql: 'kill_player' ;;
   }
 
   dimension: game_name {
     type: string
-    sql: ${TABLE}.game_name ;;
+    sql: 'Lookerwood Farms' ;;
   }
 
   dimension: game_version {
     type: string
-    sql: ${TABLE}.game_version ;;
+    sql: '11' ;;
   }
 
   dimension: iap_revenue {
     type: number
-    sql: ${TABLE}.iap_revenue ;;
+    sql: 0.5 ;;
   }
 
   dimension: install_cost {
     type: number
-    sql: ${TABLE}.install_cost ;;
+    sql: 1.2 ;;
   }
 
   dimension: install_source {
     type: string
-    sql: ${TABLE}.install_source ;;
+    sql: 'facebook' ;;
   }
 
   dimension: user_id {
     type: string
-    sql: ${TABLE}.user_id ;;
-  }
-
-  dimension: player_session_sequence {
-    type: number
-    sql: ${TABLE}.player_session_sequence ;;
+    sql: '1234' ;;
   }
 
   dimension_group: user_first_seen {
@@ -129,7 +109,7 @@ view: raw_events {
       quarter,
       year
     ]
-    sql: ${TABLE}.user_first_seen ;;
+    sql: CURRENT_TIMESTAMP() ;;
 
   }
 
