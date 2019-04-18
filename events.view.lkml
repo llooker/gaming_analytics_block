@@ -37,18 +37,24 @@ dimension: drill_field {
 
 # Dimensions
   dimension: install_group {
-    description: "Where did the user originate? (organic,cross,paid)"
+    description: "Where did the user originate? (organic or paid)"
     type: string
     sql: CASE
             WHEN ${install_source} = 'organic' then 'organic'
-            WHEN ${install_source} = 'crossinstall' then 'cross'
             ELSE 'paid'
           END ;;
           drill_fields: [install_source]
   }
 
+  dimension: install_source {
+    drill_fields: [campaign_name]
+  }
+
   dimension: campaign_name {
-    sql: LOWER(${TABLE}.campaign_name) ;;
+    link: {
+      label: "Manage this campaign in {{ events.install_source._value }}"
+      url: "http://{{events.install_source._value}}/manage/{{value}}"
+    }
   }
 
   dimension: campaign_type {
@@ -60,7 +66,7 @@ dimension: drill_field {
        when ${campaign_name} LIKE '%high%' THEN 'banner - high density'
        else 'banner - low density'
      END ;;
-    drill_fields: [campaign_name]
+    drill_fields: [install_source,campaign_name]
   }
 
   dimension: is_top_10_country {
@@ -96,6 +102,20 @@ dimension: drill_field {
     value_format_name: large_number
     drill_fields: [drill_field,number_of_new_users]
   }
+
+  measure: number_of_paid_users {
+    group_label: "Number of non-organic users"
+    type: count_distinct
+    sql: ${user_id};;
+    filters: {
+      field: install_group
+      value: "paid"
+    }
+    value_format_name: large_number
+    drill_fields: [drill_field,number_of_paid_users]
+  }
+
+
 
 # Event Counts
 
@@ -305,10 +325,16 @@ dimension: drill_field {
     {% elsif value > 1.0 %}
     <a style="color: green; font-size:100%" href="#drillmenu" target="_self">{{ rendered_value }}</a>
     {% endif %} ;;
-    drill_fields: [drill_field,return_on_ad_spend]
+    drill_fields: [drill_field,total_install_spend,return_on_ad_spend,number_of_paid_users,total_revenue_from_paid_users,cost_per_install]
   }
 
 # Monetization
+
+dimension: is_paying_user {
+  type: yesno
+  description: "Had an IAP purhcase in selected time period"
+  sql: ${iap_revenue} > 0 ;;
+}
 
 measure: total_iap_revenue {
   label: "Total IAP Revenue"
@@ -369,10 +395,11 @@ measure: total_iap_revenue {
   measure: number_of_iap_paying_users {
     group_label: "Monetization"
     description: "Number of users with IAP purchases"
-    type: count
+    type: count_distinct
+    sql: ${user_id} ;;
     filters: {
-      field: iap_revenue
-      value: ">0"
+      field: is_paying_user
+      value: "Yes"
     }
     drill_fields: [drill_field,number_of_iap_paying_users]
   }

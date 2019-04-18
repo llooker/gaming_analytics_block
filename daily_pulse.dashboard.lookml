@@ -2,28 +2,6 @@
   title: Daily Pulse
   layout: newspaper
   elements:
-  - title: Installs
-    name: Installs
-    model: gaming
-    explore: events
-    type: single_value
-    fields: [events.number_of_new_users]
-    filters: {}
-    limit: 500
-    column_limit: 50
-    note_state: collapsed
-    note_display: hover
-    note_text: Total number of unique users as counted for the first time in the selected
-      time period
-    listen:
-      Date Range: events.event_date
-      Drill Down: events.drill_by
-      Platform: events.device_platform
-      Install Source: events.install_source
-    row: 2
-    col: 4
-    width: 4
-    height: 3
   - title: New Tile
     name: New Tile
     model: gaming
@@ -35,42 +13,43 @@
     sorts: [events.event_date desc]
     limit: 500
     column_limit: 50
-    stacking: ''
-    trellis: ''
     color_application:
       collection_id: 611da387-0e33-4239-aef0-a187c149cf88
       palette_id: f31efe28-e698-428c-8420-fcb37f2010aa
       options:
         steps: 5
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: false
     show_view_names: false
-    point_style: none
-    series_colors: {}
-    series_labels:
-      events.number_of_users: Active Users
-    series_types: {}
-    limit_displayed_rows: false
     y_axes: [{label: '', orientation: left, series: [{id: events.number_of_new_users,
             name: Number of New Users, axisId: events.number_of_new_users}, {id: events.number_of_users,
             name: Active Users, axisId: events.number_of_users}], showLabels: true,
         showValues: true, unpinAxis: true, tickDensity: default, tickDensityCustom: 5,
         type: linear}]
-    y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
     show_x_axis_label: false
     show_x_axis_ticks: false
-    x_axis_scale: auto
     y_axis_scale_mode: linear
     x_axis_reversed: false
     y_axis_reversed: false
     plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    series_types: {}
+    point_style: none
+    series_colors: {}
+    series_labels:
+      events.number_of_users: Active Users
+      events.number_of_new_users: New Installs
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
     swap_axes: false
     show_null_points: true
     interpolation: linear
@@ -80,10 +59,11 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
-    row: 5
-    col: 0
-    width: 8
-    height: 4
+      Country: events.country
+    row: 2
+    col: 4
+    width: 4
+    height: 7
   - title: Daily Active Users
     name: Daily Active Users
     model: gaming
@@ -106,10 +86,11 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
+      Country: events.country
     row: 2
     col: 0
     width: 4
-    height: 3
+    height: 4
   - name: "<span class='fa fa-tachometer'> Topline KPIs</span>"
     type: text
     title_text: "<span class='fa fa-tachometer'> Topline KPIs</span>"
@@ -164,6 +145,7 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
+      Country: events.country
     row: 2
     col: 8
     width: 4
@@ -187,6 +169,7 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
+      Country: events.country
     row: 2
     col: 12
     width: 4
@@ -248,6 +231,7 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
+      Country: events.country
     row: 5
     col: 8
     width: 8
@@ -271,7 +255,9 @@
     listen:
       Date Range: events.event_date
       Drill Down: events.drill_by
-      Platform: events.install_source
+      Platform: events.device_platform
+      Install Source: events.install_source
+      Country: events.country
     row: 2
     col: 20
     width: 4
@@ -295,6 +281,7 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
+      Country: events.country
     row: 2
     col: 16
     width: 4
@@ -359,6 +346,7 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
+      Country: events.country
     row: 5
     col: 16
     width: 8
@@ -381,9 +369,10 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
+      Country: events.country
     row: 11
     col: 0
-    width: 5
+    width: 4
     height: 2
   - title: Install Sources
     name: Install Sources
@@ -462,6 +451,7 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
+      Country: events.country
     row: 11
     col: 10
     width: 14
@@ -516,10 +506,11 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
-    row: 13
-    col: 0
-    width: 10
-    height: 5
+      Country: events.country
+    row: 11
+    col: 4
+    width: 6
+    height: 7
   - title: Retention by Source
     name: Retention by Source
     model: gaming
@@ -579,6 +570,7 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
+      Country: events.country
     row: 20
     col: 12
     width: 12
@@ -599,9 +591,11 @@
     listen:
       Date Range: events.event_date
       Drill Down: events.drill_by
-      Platform: events.install_source
-    row: 20
-    col: 4
+      Platform: events.device_platform
+      Install Source: events.install_source
+      Country: events.country
+    row: 23
+    col: 0
     width: 4
     height: 2
   - title: D1 Retention
@@ -620,11 +614,13 @@
     listen:
       Date Range: events.event_date
       Drill Down: events.drill_by
-      Platform: events.install_source
+      Platform: events.device_platform
+      Install Source: events.install_source
+      Country: events.country
     row: 20
     col: 0
     width: 4
-    height: 2
+    height: 3
   - title: D14 Retention
     name: D14 Retention
     model: gaming
@@ -641,9 +637,11 @@
     listen:
       Date Range: events.event_date
       Drill Down: events.drill_by
-      Platform: events.install_source
-    row: 20
-    col: 8
+      Platform: events.device_platform
+      Install Source: events.install_source
+      Country: events.country
+    row: 25
+    col: 0
     width: 4
     height: 2
   - title: Campaign Types
@@ -723,6 +721,7 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
+      Country: events.country
     row: 14
     col: 10
     width: 14
@@ -731,15 +730,53 @@
     name: "% New Paid Users"
     model: gaming
     explore: events
-    type: single_value
+    type: looker_donut_multiples
     fields: [events.install_group, events.number_of_new_users]
+    pivots: [events.install_group]
     filters: {}
-    sorts: [events.install_group desc]
+    sorts: [events.install_group]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{table_calculation: total, label: "% total", expression: "${events.number_of_new_users}/sum(${events.number_of_new_users})",
-        value_format: !!null '', value_format_name: percent_2, _kind_hint: measure,
-        _type_hint: number}]
+    show_value_labels: true
+    font_size: 12
+    x_axis_gridlines: false
+    y_axis_gridlines: false
+    show_view_names: false
+    y_axes: [{label: '', orientation: bottom, series: [{axisId: paid - events.number_of_new_users,
+            id: paid - events.number_of_new_users, name: paid}, {axisId: organic -
+              events.number_of_new_users, id: organic - events.number_of_new_users,
+            name: organic}], showLabels: false, showValues: false, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: false
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: percent
+    limit_displayed_rows: false
+    legend_position: center
+    series_types: {}
+    point_style: none
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    value_labels: labels
+    label_type: labPer
+    inner_radius: 60
+    up_color: "#2196F3"
+    down_color: "#03d7f4"
+    total_color: "#00BCD4"
     custom_color_enabled: true
     custom_color: ''
     show_single_value_title: true
@@ -747,19 +784,21 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    hidden_fields: [events.number_of_new_users]
+    hidden_fields:
     note_state: collapsed
     note_display: hover
-    note_text: Cost per Install
+    note_text: What percentage of users did we pay for (vs organic)?
+    title_hidden: true
     listen:
       Date Range: events.event_date
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
-    row: 11
-    col: 5
-    width: 5
-    height: 2
+      Country: events.country
+    row: 13
+    col: 0
+    width: 4
+    height: 5
   - title: D1& D7 Retention
     name: D1& D7 Retention
     model: gaming
@@ -819,10 +858,11 @@
       Drill Down: events.drill_by
       Platform: events.device_platform
       Install Source: events.install_source
-    row: 22
-    col: 0
-    width: 12
-    height: 5
+      Country: events.country
+    row: 20
+    col: 4
+    width: 8
+    height: 7
   - title: LTV (0-30 days)
     name: LTV (0-30 days)
     model: gaming
@@ -830,11 +870,7 @@
     type: looker_area
     fields: [events.retention_day, events.average_ad_revenue_per_user, events.average_iap_revenue_per_user]
     filters:
-      events.event_date: 30 days ago for 30 days
       events.retention_day: "<=30"
-      events.drill_by: device^_platform
-      events.device_platform: ''
-      events.install_source: ''
     sorts: [events.retention_day]
     limit: 500
     column_limit: 50
@@ -907,11 +943,16 @@
       total, prev_day]
     note_state: expanded
     note_display: hover
-    note_text: How long does it take to make $1?
-    listen: {}
+    note_text: How long does it take to make $1? (for all users)
+    listen:
+      Date Range: events.event_date
+      Drill Down: events.drill_by
+      Platform: events.device_platform
+      Install Source: events.install_source
+      Country: events.country
     row: 29
     col: 0
-    width: 24
+    width: 12
     height: 6
   - title: LTV (0-7 days) Per Country
     name: LTV (0-7 days) Per Country
@@ -922,12 +963,8 @@
       events.country]
     pivots: [events.country]
     filters:
-      events.event_date: 30 days ago for 30 days
       events.retention_day: "<=7"
-      events.drill_by: device^_platform
       events.is_top_10_country: 'Yes'
-      events.device_platform: ''
-      events.install_source: ''
     sorts: [events.country 0, events.retention_day]
     limit: 500
     column_limit: 50
@@ -1030,11 +1067,120 @@
     note_state: collapsed
     note_display: hover
     note_text: How long does it take to make our CPI back?
-    listen: {}
+    listen:
+      Date Range: events.event_date
+      Drill Down: events.drill_by
+      Platform: events.device_platform
+      Install Source: events.install_source
     row: 35
     col: 0
     width: 24
     height: 11
+  - title: "% IAP Paying Users"
+    name: "% IAP Paying Users"
+    model: gaming
+    explore: events
+    type: single_value
+    fields: [events.percent_paying_users]
+    filters: {}
+    limit: 500
+    query_timezone: America/Los_Angeles
+    series_types: {}
+    up_color: "#2196F3"
+    down_color: "#03d7f4"
+    total_color: "#00BCD4"
+    listen:
+      Date Range: events.event_date
+      Drill Down: events.drill_by
+      Platform: events.device_platform
+      Install Source: events.install_source
+      Country: events.country
+    row: 29
+    col: 12
+    width: 4
+    height: 6
+  - title: Revenue Breadkdown
+    name: Revenue Breadkdown
+    model: gaming
+    explore: events
+    type: looker_bar
+    fields: [events.total_iap_revenue, events.total_ad_revenue]
+    filters: {}
+    limit: 500
+    query_timezone: America/Los_Angeles
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    hide_legend: false
+    legend_position: center
+    font_size: '12'
+    series_types: {}
+    point_style: none
+    series_labels:
+      events.total_ad_revenue: Ad Revenue
+      events.total_iap_revenue: IAP revenue
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    up_color: "#2196F3"
+    down_color: "#03d7f4"
+    total_color: "#00BCD4"
+    listen:
+      Date Range: events.event_date
+      Drill Down: events.drill_by
+      Platform: events.device_platform
+      Install Source: events.install_source
+      Country: events.country
+    row: 29
+    col: 16
+    width: 8
+    height: 6
+  - title: Daily Installs
+    name: Daily Installs
+    model: gaming
+    explore: events
+    type: single_value
+    fields: [events.event_date, events.number_of_new_users]
+    fill_fields: [events.event_date]
+    filters: {}
+    sorts: [events.event_date desc]
+    limit: 500
+    column_limit: 50
+    dynamic_fields: [{table_calculation: daily_installs, label: Daily Installs, expression: 'mean(${events.number_of_new_users})',
+        value_format: '[>=1000000]0.00,,"M";[>=1000]0.00,"K";0', value_format_name: !!null '',
+        _kind_hint: measure, _type_hint: number}]
+    note_state: expanded
+    note_display: hover
+    note_text: Average daily new players
+    listen:
+      Date Range: events.event_date
+      Drill Down: events.drill_by
+      Platform: events.device_platform
+      Install Source: events.install_source
+      Country: events.country
+    row: 6
+    col: 0
+    width: 4
+    height: 3
   filters:
   - name: Date Range
     title: Date Range
@@ -1076,3 +1222,13 @@
     explore: events
     listens_to_filters: []
     field: events.install_source
+  - name: Country
+    title: Country
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    model: gaming
+    explore: events
+    listens_to_filters: []
+    field: events.country
