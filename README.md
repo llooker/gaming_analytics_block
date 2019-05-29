@@ -1,15 +1,13 @@
 ### What does this Looker Block do for me?
-**(1) Combine Multiple Data Sources** - Combine your GA data with data from AdWords, DoubleClick, Facebook Ads, Salesforce, and more to get a holistic view of all your customer data in one central view (see bottom of this page for instructions).
+**(1) Define Common Gaming KPIs** - Describe.
 
-**(2) Replicate Existing GA Reports + More** - Replicate all your existing GA reports and dashboards in a matter of minutes or hours to make the switch to Looker seamless. Plus, enjoy all the additional value-add analysis that comes turnkey with this plug-and-play model and dashboards. Time-to-value for a new data tool has never been quicker.
+**(2) Look at acquistion, retention and monetization in one place** - Describe.
 
-**(3) Compare Multiple Dimensions and Metrics** - rather than being limited to viewing 1 dimension, and 2-4 metrics at a time, Looker allows you to compare any number of dimensions and metrics, including retroactive goals and custom user segments, on the same visualization or dashboard.
+**(3) Optimize Spend** - Describe
 
-**(4) Enterprise Data Platform** - Take advantage of Looker's data platform functionality, including [data actions](https://discourse.looker.com/t/data-actions/3573), scheduling, permissions, alerting, parameterization (each user can only see their own data), and more
+**(4) Measure Fun** - Describe
 
-**(5) Multiple GA Properties in One Dashboard** - Elevate your analysis beyond the limited "Roll-Up Reporting" and see all properties in one dashboard and explore interface! The parameterize user permissions as necessary (so analyst for website A can't see data for website B) to give each user a live view into the data that matters to them
-
-**(6) Usable / Shareable Dashboards** - create centralized dashboards for the entire team, and departmental or individual dashboards for each user, and rest easy knowing everyone is looking at the same information at all times. Then schedule the dashboard for emails or alerts, period-end reporting, anomaly detection, or whatever else serves your use-case.
+**(5) Session Deep Dives** - Describe
 
 
 ### Google Analytics Premium Data Structure
