@@ -60,6 +60,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 2
     col: 4
     width: 4
@@ -87,6 +88,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 2
     col: 0
     width: 4
@@ -103,8 +105,7 @@
   - name: "<span class='fa fa-smile-o'> Retention </span>"
     type: text
     title_text: "<span class='fa fa-smile-o'> Retention </span>"
-    subtitle_text: Are our games fun? Go to <a href="/dashboards/1">Retention dashboard</a>
-      (coming soon!) </p>
+    subtitle_text: Are our games fun?
     row: 18
     col: 0
     width: 24
@@ -112,8 +113,7 @@
   - name: "<span class='fa fa-users'> User Acquistion </span>"
     type: text
     title_text: "<span class='fa fa-users'> User Acquistion </span>"
-    subtitle_text: Are we acquiring players from the best places?  Go to <a href="/dashboards/1"
-      >UA dashboard</a> (coming soon!) </p>
+    subtitle_text: Are we acquiring players from the best places?
     body_text: ''
     row: 9
     col: 0
@@ -122,8 +122,8 @@
   - name: "<span class='fa fa-usd'> Monetization </span>"
     type: text
     title_text: "<span class='fa fa-usd'> Monetization </span>"
-    subtitle_text: <p> Are we building a sustainable business? Go to <a href="/dashboards/1">monetization
-      dashboard</a>  (coming soon!) </p>
+    subtitle_text: <p> Are we building a sustainable business? Go to <a href="/dashboards/100"
+      target="_blank">monetization dashboard</a></p>
     row: 27
     col: 0
     width: 24
@@ -146,6 +146,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 2
     col: 8
     width: 4
@@ -155,7 +156,7 @@
     model: gaming
     explore: events
     type: single_value
-    fields: [events.average_revenue_per_paying_user]
+    fields: [events.average_revenue_per_spender]
     filters: {}
     limit: 500
     query_timezone: America/Los_Angeles
@@ -170,6 +171,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 2
     col: 12
     width: 4
@@ -179,50 +181,51 @@
     model: gaming
     explore: events
     type: looker_line
-    fields: [events.event_date, events.total_revenue, events.average_revenue_per_paying_user]
+    fields: [events.event_date, events.total_revenue, events.average_revenue_per_spender]
     fill_fields: [events.event_date]
     filters: {}
     sorts: [events.event_date desc]
     limit: 500
     column_limit: 50
-    stacking: ''
-    trellis: ''
     color_application:
       collection_id: 611da387-0e33-4239-aef0-a187c149cf88
       palette_id: f31efe28-e698-428c-8420-fcb37f2010aa
       options:
         steps: 5
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: false
     show_view_names: false
-    point_style: none
-    series_colors: {}
-    series_labels:
-      events.number_of_users: Active Users
-    series_types:
-      events.average_revenue_per_paying_user: column
-    limit_displayed_rows: false
-    y_axes: [{label: '', orientation: left, series: [{id: events.total_revenue, name: Total
-              Revenue, axisId: events.total_revenue}], showLabels: true, showValues: true,
+    y_axes: [{label: '', orientation: left, series: [{axisId: events.total_revenue,
+            id: events.total_revenue, name: Total Revenue}], showLabels: true, showValues: true,
         unpinAxis: false, tickDensity: default, type: linear}, {label: !!null '',
-        orientation: right, series: [{id: events.average_revenue_per_paying_user,
-            name: ARPPU (IAP), axisId: events.average_revenue_per_paying_user}], showLabels: true,
+        orientation: right, series: [{axisId: events.average_revenue_per_spender,
+            id: events.average_revenue_per_spender, name: ARPPU (IAP)}], showLabels: true,
         showValues: true, unpinAxis: false, tickDensity: default, type: linear}]
-    y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
     show_x_axis_label: false
     show_x_axis_ticks: false
-    x_axis_scale: auto
     y_axis_scale_mode: linear
     x_axis_reversed: false
     y_axis_reversed: false
     plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    series_types:
+      events.average_revenue_per_paying_user: column
+      events.average_revenue_per_spender: column
+    point_style: none
+    series_colors: {}
+    series_labels:
+      events.number_of_users: Active Users
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
     show_null_points: true
     interpolation: linear
     title_hidden: true
@@ -232,6 +235,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 5
     col: 8
     width: 8
@@ -258,6 +262,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 2
     col: 20
     width: 4
@@ -282,6 +287,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 2
     col: 16
     width: 4
@@ -347,6 +353,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 5
     col: 16
     width: 8
@@ -370,6 +377,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 11
     col: 0
     width: 4
@@ -452,12 +460,13 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 11
     col: 10
     width: 14
     height: 3
-  - title: Daily Installs
-    name: Daily Installs
+  - title: Installs by Day
+    name: Installs by Day
     model: gaming
     explore: events
     type: looker_line
@@ -468,34 +477,39 @@
     sorts: [events.number_of_new_users desc 0, events.install_group]
     limit: 500
     column_limit: 50
-    stacking: ''
-    trellis: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
+    color_application:
+      collection_id: 611da387-0e33-4239-aef0-a187c149cf88
+      palette_id: f31efe28-e698-428c-8420-fcb37f2010aa
+      options:
+        steps: 5
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
-    point_style: none
-    series_types: {}
-    limit_displayed_rows: false
     y_axes: [{label: '', orientation: left, series: [{id: cross - events.number_of_new_users,
             name: cross, axisId: events.number_of_new_users}, {id: organic - events.number_of_new_users,
             name: organic, axisId: events.number_of_new_users}, {id: paid - events.number_of_new_users,
             name: paid, axisId: events.number_of_new_users}], showLabels: false, showValues: true,
         unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
-    y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
     show_x_axis_label: false
     show_x_axis_ticks: true
-    x_axis_scale: auto
     y_axis_scale_mode: linear
     x_axis_reversed: false
     y_axis_reversed: false
     plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    series_types: {}
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
     show_null_points: true
     interpolation: linear
     value_labels: labels
@@ -507,6 +521,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 11
     col: 4
     width: 6
@@ -527,26 +542,18 @@
     dynamic_fields: [{table_calculation: still_active, label: "% still active", expression: "${events.number_of_users}/max(${events.number_of_new_users})",
         value_format: !!null '', value_format_name: percent_2, _kind_hint: measure,
         _type_hint: number}]
-    stacking: ''
-    trellis: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
+    color_application:
+      collection_id: 611da387-0e33-4239-aef0-a187c149cf88
+      palette_id: f31efe28-e698-428c-8420-fcb37f2010aa
+      options:
+        steps: 5
     x_axis_gridlines: false
     y_axis_gridlines: false
     show_view_names: false
-    point_style: none
-    series_types: {}
-    limit_displayed_rows: true
-    limit_displayed_rows_values:
-      show_hide: hide
-      first_last: first
-      num_rows: '1'
     y_axes: [{label: '', orientation: left, series: [{id: cross - still_active, name: cross,
             axisId: still_active}, {id: organic - still_active, name: organic, axisId: still_active},
           {id: paid - still_active, name: paid, axisId: still_active}], showLabels: true,
         showValues: true, maxValue: 0.6, unpinAxis: false, tickDensity: default, type: log}]
-    y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
@@ -554,11 +561,24 @@
     show_x_axis_label: true
     x_axis_label: days since signup
     show_x_axis_ticks: true
-    x_axis_scale: auto
     y_axis_scale_mode: linear
     x_axis_reversed: false
     y_axis_reversed: false
     plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: true
+    limit_displayed_rows_values:
+      show_hide: hide
+      first_last: first
+      num_rows: '1'
+    legend_position: center
+    series_types: {}
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
     show_null_points: false
     interpolation: linear
     value_labels: labels
@@ -571,6 +591,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 20
     col: 12
     width: 12
@@ -594,6 +615,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 23
     col: 0
     width: 4
@@ -617,6 +639,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 20
     col: 0
     width: 4
@@ -640,6 +663,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 25
     col: 0
     width: 4
@@ -722,6 +746,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 14
     col: 10
     width: 14
@@ -739,6 +764,11 @@
     column_limit: 50
     show_value_labels: true
     font_size: 12
+    color_application:
+      collection_id: 611da387-0e33-4239-aef0-a187c149cf88
+      palette_id: f31efe28-e698-428c-8420-fcb37f2010aa
+      options:
+        steps: 5
     x_axis_gridlines: false
     y_axis_gridlines: false
     show_view_names: false
@@ -795,6 +825,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 13
     col: 0
     width: 4
@@ -810,37 +841,42 @@
     sorts: [events.user_first_seen_date desc]
     limit: 500
     column_limit: 50
-    stacking: ''
-    trellis: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
+    color_application:
+      collection_id: 611da387-0e33-4239-aef0-a187c149cf88
+      palette_id: f31efe28-e698-428c-8420-fcb37f2010aa
+      options:
+        steps: 5
     x_axis_gridlines: false
     y_axis_gridlines: false
     show_view_names: false
-    point_style: none
-    series_types: {}
-    limit_displayed_rows: true
-    limit_displayed_rows_values:
-      show_hide: hide
-      first_last: first
-      num_rows: '1'
     y_axes: [{label: '', orientation: left, series: [{id: events.d1_retention_rate,
             name: D1 Retention Rate, axisId: events.d1_retention_rate}], showLabels: true,
         showValues: true, maxValue: !!null '', minValue: !!null '', unpinAxis: false,
         tickDensity: default, type: linear}]
-    y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
     show_x_axis_label: false
     show_x_axis_ticks: true
-    x_axis_scale: auto
     y_axis_scale_mode: linear
     x_axis_reversed: false
     y_axis_reversed: false
     plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: true
+    limit_displayed_rows_values:
+      show_hide: hide
+      first_last: first
+      num_rows: '1'
+    legend_position: center
+    series_types: {}
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
     reference_lines: [{reference_type: line, range_start: max, range_end: min, margin_top: deviation,
         margin_value: mean, margin_bottom: deviation, label_position: center, color: "#8BC34A",
         line_value: '0.45', label: d1 goal 45%}, {reference_type: line, range_start: max,
@@ -859,6 +895,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 20
     col: 4
     width: 8
@@ -950,138 +987,17 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 29
     col: 0
     width: 12
     height: 6
-  - title: LTV (0-7 days) Per Country
-    name: LTV (0-7 days) Per Country
-    model: gaming
-    explore: events
-    type: looker_column
-    fields: [events.retention_day, events.average_revenue_per_user, events.cost_per_install,
-      events.country]
-    pivots: [events.country]
-    filters:
-      events.retention_day: "<=7"
-      events.is_top_10_country: 'Yes'
-    sorts: [events.country 0, events.retention_day]
-    limit: 500
-    column_limit: 50
-    dynamic_fields: [{table_calculation: ltv_total, label: LTV - Total, expression: 'running_total(${events.average_revenue_per_user})',
-        value_format: !!null '', value_format_name: usd, _kind_hint: measure, _type_hint: number},
-      {table_calculation: less_than_cpi, label: Less than CPI, expression: 'if(${ltv_total}
-          < ${cpi},${ltv_total},null)', value_format: !!null '', value_format_name: usd,
-        _kind_hint: measure, _type_hint: number}, {table_calculation: more_than_cpi,
-        label: More than CPI, expression: 'if(${ltv_total} >= ${cpi},${ltv_total},null)',
-        value_format: !!null '', value_format_name: usd, _kind_hint: measure, _type_hint: number},
-      {table_calculation: cpi, label: CPI, expression: 'running_total(${events.cost_per_install})',
-        value_format: !!null '', value_format_name: usd, _kind_hint: measure, _type_hint: number}]
-    color_application:
-      collection_id: 611da387-0e33-4239-aef0-a187c149cf88
-      palette_id: f31efe28-e698-428c-8420-fcb37f2010aa
-      options:
-        steps: 5
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    y_axes: [{label: '', orientation: left, series: [{id: events.total_revenue, name: Total
-              Revenue, axisId: events.total_revenue}], showLabels: true, showValues: true,
-        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear},
-      {label: !!null '', orientation: right, series: [{id: ltv, name: LTV, axisId: ltv}],
-        showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
-        tickDensityCustom: 5, type: linear}]
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    x_axis_label: Days since start (0-7)
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: pivot
-    stacking: normal
-    limit_displayed_rows: false
-    hide_legend: true
-    legend_position: left
-    trellis_rows: 5
-    series_types: {}
-    point_style: none
-    series_colors:
-      Brazil - less_than_1: "#FFEB3B"
-      Brazil - more_than_1: "#4CAF50"
-      France - less_than_1: "#FFEB3B"
-      France - more_than_1: "#4CAF50"
-      Germany - less_than_1: "#FFEB3B"
-      Germany - more_than_1: "#4CAF50"
-      Mexico - more_than_1: "#4CAF50"
-      Mexico - less_than_1: "#FFEB3B"
-      Poland - less_than_1: "#FFEB3B"
-      Poland - more_than_1: "#4CAF50"
-      Russia - less_than_1: "#FFEB3B"
-      Russia - more_than_1: "#4CAF50"
-      Turkey - less_than_1: "#FFEB3B"
-      Turkey - more_than_1: "#4CAF50"
-      United Kingdom - less_than_1: "#FFEB3B"
-      United Kingdom - more_than_1: "#4CAF50"
-      United States - more_than_1: "#4CAF50"
-      United States - less_than_1: "#FFEB3B"
-      Vietnam - less_than_1: "#FFEB3B"
-      Vietnam - more_than_1: "#4CAF50"
-      Brazil - less_than_cpi: "#CDDC39"
-      Brazil - more_than_cpi: "#009688"
-      France - less_than_cpi: "#CDDC39"
-      Germany - less_than_cpi: "#CDDC39"
-      Germany - more_than_cpi: "#009688"
-      Mexico - less_than_cpi: "#CDDC39"
-      Mexico - more_than_cpi: "#009688"
-      Poland - less_than_cpi: "#CDDC39"
-      Poland - more_than_cpi: "#009688"
-      Russia - less_than_cpi: "#CDDC39"
-      Russia - more_than_cpi: "#009688"
-      Turkey - less_than_cpi: "#CDDC39"
-      Turkey - more_than_cpi: "#009688"
-      United Kingdom - less_than_cpi: "#CDDC39"
-      United Kingdom - more_than_cpi: "#009688"
-      United States - less_than_cpi: "#CDDC39"
-      United States - more_than_cpi: "#009688"
-      Vietnam - less_than_cpi: "#CDDC39"
-      Vietnam - more_than_cpi: "#009688"
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    reference_lines: []
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    show_null_points: true
-    interpolation: linear
-    hidden_fields: [events.average_revenue_per_user, ltv_total, events.cost_per_install,
-      cpi]
-    note_state: collapsed
-    note_display: hover
-    note_text: How long does it take to make our CPI back?
-    listen:
-      Date Range: events.event_date
-      Drill Down: events.drill_by
-      Platform: events.device_platform
-      Install Source: events.install_source
-    row: 35
-    col: 0
-    width: 24
-    height: 11
-  - title: "% IAP Paying Users"
-    name: "% IAP Paying Users"
+  - title: "% Spenders"
+    name: "% Spenders"
     model: gaming
     explore: events
     type: single_value
-    fields: [events.percent_paying_users]
+    fields: [events.percent_spenders]
     filters: {}
     limit: 500
     query_timezone: America/Los_Angeles
@@ -1095,6 +1011,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 29
     col: 12
     width: 4
@@ -1108,6 +1025,11 @@
     filters: {}
     limit: 500
     query_timezone: America/Los_Angeles
+    color_application:
+      collection_id: 611da387-0e33-4239-aef0-a187c149cf88
+      palette_id: f31efe28-e698-428c-8420-fcb37f2010aa
+      options:
+        steps: 5
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -1150,6 +1072,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 29
     col: 16
     width: 8
@@ -1177,6 +1100,7 @@
       Platform: events.device_platform
       Install Source: events.install_source
       Country: events.country
+      Game: events.game_name
     row: 6
     col: 0
     width: 4
@@ -1232,3 +1156,13 @@
     explore: events
     listens_to_filters: []
     field: events.country
+  - name: Game
+    title: Game
+    type: field_filter
+    default_value: Lookerwood Farm
+    allow_multiple_values: true
+    required: false
+    model: gaming
+    explore: events
+    listens_to_filters: []
+    field: events.game_name

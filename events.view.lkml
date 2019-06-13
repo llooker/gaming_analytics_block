@@ -120,10 +120,36 @@ dimension: drill_field {
 # Event Counts
 
   measure: count {
+    group_label: "Event Counts"
     label: "Number of Events"
     type: count
     value_format_name: large_number
     drill_fields: [drill_field,count]
+  }
+
+  measure: number_of_ads_shown {
+    group_label: "Event Counts"
+    type: count
+    filters: {
+      field: event_name
+      value: "Ad_Watched"
+    }
+    drill_fields: [drill_field,count]
+  }
+
+  measure: ads_shown_per_user {
+    group_label: "Event Counts"
+    description: "No. of Ads Shown / Number of Users"
+    type: number
+    value_format_name: decimal_2
+    sql: 1.0 * ${number_of_ads_shown} / NULLIF(${number_of_users},0) ;;
+    drill_fields: [drill_field,ads_shown_per_user]
+  }
+
+  measure: number_of_sesssions {
+    type: count_distinct
+    sql: concat(${user_id},${player_session_sequence}) ;;
+    drill_fields: [drill_field,number_of_sesssions]
   }
 
 # Misc
@@ -336,6 +362,43 @@ dimension: is_paying_user {
   sql: ${iap_revenue} > 0 ;;
 }
 
+dimension: is_iap_purchase {
+  type: yesno
+  hidden: yes
+  sql: ${event_name} = 'in_app_purchase' ;;
+}
+
+dimension: iap_purchase_tier {
+  group_label: "Monetization"
+  label: "IAP Purchase Tier"
+  description: "How big was each purchase?"
+  type: tier
+  tiers: [0,10,20,30]
+  sql: ${iap_revenue} ;;
+  style: integer
+  value_format_name: usd_0
+}
+
+measure: number_of_iap_purchases {
+  group_label: "Monetization"
+  label: "Number of IAP Purchases"
+  type: count
+  filters: {
+    field: is_iap_purchase
+    value: "yes"
+  }
+  drill_fields: [drill_field,total_iap_revenue]
+}
+
+measure: transactions_per_spender {
+  type: number
+  description: "For paying users, how many transactions do they make"
+  group_label: "Monetization"
+  sql: 1.0 * ${number_of_iap_purchases}/nullif(${number_of_spenders},0) ;;
+  value_format_name: decimal_2
+  drill_fields: [drill_field,transactions_per_spender]
+}
+
 measure: total_iap_revenue {
   label: "Total IAP Revenue"
   group_label: "Monetization"
@@ -370,6 +433,16 @@ measure: total_iap_revenue {
     drill_fields: [drill_field,total_revenue]
   }
 
+  measure: total_revenue_after_UA {
+    label: "Total Revenue After UA"
+    group_label: "Monetization"
+    description: "Revenue - Marketing Spend"
+    type: number
+    sql: ${total_revenue} - ${total_install_spend}  ;;
+    value_format_name: large_usd
+    drill_fields: [drill_field,total_revenue_after_UA]
+  }
+
   measure: total_revenue_from_paid_users {
       group_label: "Monetization"
     description: "IAP + Ad Revenue (for users acquiried by marketing)"
@@ -392,7 +465,7 @@ measure: total_iap_revenue {
     drill_fields: [drill_field,average_revenue]
   }
 
-  measure: number_of_iap_paying_users {
+  measure: number_of_spenders {
     group_label: "Monetization"
     description: "Number of users with IAP purchases"
     type: count_distinct
@@ -401,26 +474,26 @@ measure: total_iap_revenue {
       field: is_paying_user
       value: "Yes"
     }
-    drill_fields: [drill_field,number_of_iap_paying_users]
+    drill_fields: [drill_field,number_of_spenders]
   }
 
-  measure: percent_paying_users {
+  measure: percent_spenders {
     group_label: "Monetization"
     description: "% of users with IAP purchases"
     type: number
-    sql: 1.0 * ${number_of_iap_paying_users} / NULLIF(${number_of_users},0) ;;
+    sql: 1.0 * ${number_of_spenders} / NULLIF(${number_of_users},0) ;;
     value_format_name: percent_2
-    drill_fields: [drill_field,percent_paying_users]
+    drill_fields: [drill_field,percent_spenders]
   }
 
-  measure: average_revenue_per_paying_user {
+  measure: average_revenue_per_spender {
     group_label: "Monetization"
     label: "ARPPU (IAP)"
     description: " Total Revenue / Number of IAP Paying Users"
     type: number
-    sql: 1.0 * ${total_iap_revenue} / NULLIF(${number_of_iap_paying_users},0) ;;
+    sql: 1.0 * ${total_iap_revenue} / NULLIF(${number_of_spenders},0) ;;
     value_format_name: large_usd
-    drill_fields: [drill_field,average_revenue_per_paying_user]
+    drill_fields: [drill_field,average_revenue_per_spender]
   }
 
   measure: average_revenue_per_user {
@@ -555,6 +628,40 @@ measure: total_iap_revenue {
     type: number
     sql: 1.0 * ${total_d30_revenue}/ NULLIF(${d30_retained_users},0);;
     drill_fields: [drill_field,d30_revenue_per_retained_user]
+  }
+
+  #### Sessionization
+  dimension: unique_session_id {
+    type: string
+    sql: ${TABLE}.unique_session_id ;;
+  }
+
+  dimension: event_sequence_within_session {
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.event_sequence_within_session ;;
+  }
+
+  dimension: inverse_event_sequence_within_session {
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.inverse_event_sequence_within_session ;;
+  }
+
+  ### For Calculating User Fact Table with Native Derived Table
+
+  measure: player_first_seen {
+    group_label: "User Fact Table"
+    description: "Not for direct use, use for NDT"
+    type: date_time
+    sql: min(${event_raw}) ;;
+  }
+
+  measure: player_last_seen {
+    group_label: "User Fact Table"
+    description: "Not for direct use, use for NDT"
+    type: date_time
+    sql: max(${event_raw}) ;;
   }
 
 
