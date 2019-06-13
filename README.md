@@ -9,11 +9,11 @@
 
 **(5) Measure Monetization** - Calculate metrics like Revenue after UA at any level, per game, per country, per player segment. Beyond that, this block allows you to see revenue before a user has fully matured to understand LTV at a deeper level than before and focus on segments that are monetizing best.
 
-**(5) Session Deep Dives** - Calculate what events go together and create a unique session identifier to track behaviour in terms of sessions. Then use the Funnel Explorer to answer questions about what behaviours players did within a session.
+**(6) Session Deep Dives** - Calculate what events go together and create a unique session identifier to track behaviour in terms of sessions. Then use the Funnel Explorer to answer questions about what behaviours players did within a session.
 
-**(6) Deep Player Segmentation** - Whales and Minnows are easy to categorize (and are done so in this block). Going deeper is usually too difficult, especially for ad-revenue games that don't rely on IAP. The user fact tables provided in this block show great examples of custom segmentation that can help you understand your players better than ever. 
+**(7) Deep Player Segmentation** - Whales and Minnows are easy to categorize (and are done so in this block). Going deeper is usually too difficult, especially for ad-revenue games that don't rely on IAP. The user fact tables provided in this block show great examples of custom segmentation that can help you understand your players better than ever. 
 
-**(7) Session and Player Rollups** - Save on database queries by using Session and Player level metrics instead of event level metrics. 
+**(8) Session and Player Rollups** - Save on database queries by using Session and Player level metrics instead of event level metrics. 
 
 
 ### Data Structure Required 
