@@ -1,11 +1,11 @@
 ### What does this Looker Block do for me?
-**(1) Look at acquistion, retention and monetization in one place** - The way you acquire users, the way you retain them and make money all occour on the same plane of existance. The idea behind this block coupled with centralized data is to be able to examine the entire lifecycle of your players, not just pieces of their journey in silo'd tools.
+**(1) Look at acquisition, retention and monetization in one place** - The way you acquire users, the way you retain them and make money all occur on the same plane of existance. The idea behind this block coupled with centralized data is to be able to examine the entire lifecycle of your players, not just pieces of their journey in silo'd tools.
 
-**(2) Share KPI Definition for All Your Games** - Industry retention KPIs like (e.g. D7 retention), monetization (e.g. ARPPU) and aquisition (e.g. ROAS) should be measured exactly the same way for your entire game portfolio. This Block has 50+ measures that can be combined with 100s of dimensions to let you ask any question from your data.
+**(2) Share KPI Definition for All Your Games** - Industry retention KPIs like (e.g. D7 retention), monetization (e.g. ARPPU) and acquisition (e.g. ROAS) should be measured exactly the same way for your entire game portfolio. This Block has 50+ measures that can be combined with 100s of dimensions to let you ask any question from your data.
 
 **(3) Optimize Spend** - ROAS (Return on Ad Spend) is the industry standard way to understand how a campaign is performing from an ROI perspective (I bought this player for $2 and they have already spent $3, therefore my ROAS is 150%). The issue is that we need to know how a campaign is performing BEFORE our players reach their full potential LTV. This block calculates daily ROAS targets and allows you to benchmark them to decide if you should spend more or less for each campaign. 
 
-**(4) Measure Fun** - Retention metrics are some of the most important to look at, while the basic metrics of D1, D7 retention are included in this block, it allows you to dive deeper into what's important: what are your players doing before they drop off? How long did they play on thier first session? 
+**(4) Measure Fun** - Retention metrics are some of the most important to look at, while the basic metrics of D1, D7 retention are included in this block, it allows you to dive deeper into what's important: what are your players doing before they drop off? How long did they play on their first session? 
 
 **(5) Measure Monetization** - Calculate metrics like Revenue after UA at any level, per game, per country, per player segment. Beyond that, this block allows you to see revenue before a user has fully matured to understand LTV at a deeper level than before and focus on segments that are monetizing best.
 
