@@ -15,8 +15,10 @@ view: sessions {
           lag.created_at AS session_start
           , lag.idle_time AS idle_time
           , lag.user_id AS user_id
-          , GENERATE_UUID() AS unique_session_id
-          --, ROW_NUMBER () OVER (PARTITION BY lag.user_id ORDER BY lag.created_at) AS session_sequence
+          , CONCAT(lag.user_id,
+                    '-',
+                    CAST(ROW_NUMBER () OVER (PARTITION BY lag.user_id ORDER BY lag.created_at) as string)
+              ) as unique_session_id
           , COALESCE(
                 LEAD(lag.created_at) OVER (PARTITION BY lag.user_id ORDER BY lag.created_at)
               , '6000-01-01') AS next_session_start
