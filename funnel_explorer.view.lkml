@@ -99,8 +99,7 @@ view: funnel_explorer {
   }
 
   dimension: user_id {
-    type: number
-    #     hidden: TRUE
+    type: string
     sql: ${TABLE}.user_id ;;
   }
 
@@ -123,7 +122,7 @@ view: funnel_explorer {
     description: "First occurrence of event 1"
     type: time
     convert_tz: no
-    timeframes: [time]
+    timeframes: [raw,time]
     hidden: yes
     sql: ${TABLE}.event_1 ;;
   }
@@ -132,7 +131,7 @@ view: funnel_explorer {
     description: "First occurrence of event 2"
     type: time
     convert_tz: no
-    timeframes: [time]
+    timeframes: [raw,time]
     hidden: yes
     sql: ${TABLE}.event_2_first ;;
   }
@@ -141,7 +140,7 @@ view: funnel_explorer {
     description: "Last occurrence of event 2"
     type: time
     convert_tz: no
-    timeframes: [time]
+    timeframes: [raw,time]
     hidden: yes
     sql: ${TABLE}.event_2_last ;;
   }
@@ -150,7 +149,7 @@ view: funnel_explorer {
     description: "First occurrence of event 3"
     type: time
     convert_tz: no
-    timeframes: [time]
+    timeframes: [raw,time]
     hidden: yes
     sql: ${TABLE}.event_3_first ;;
   }
@@ -159,7 +158,7 @@ view: funnel_explorer {
     description: "Last occurrence of event 3"
     type: time
     convert_tz: no
-    timeframes: [time]
+    timeframes: [raw,time]
     hidden: yes
     sql: ${TABLE}.event_3_last ;;
   }
@@ -168,7 +167,7 @@ view: funnel_explorer {
     description: "First occurrence of event 4"
     type: time
     convert_tz: no
-    timeframes: [time]
+    timeframes: [raw,time]
     hidden: yes
     sql: ${TABLE}.event_4_first ;;
   }
@@ -177,7 +176,7 @@ view: funnel_explorer {
     description: "Last occurrence of event 4"
     type: time
     convert_tz: no
-    timeframes: [time]
+    timeframes: [raw,time]
     hidden: yes
     sql: ${TABLE}.event_4_last ;;
   }
@@ -221,30 +220,30 @@ view: funnel_explorer {
   dimension: reached_event_1 {
     hidden: yes
     type: yesno
-    sql: (${event_1_time} IS NOT NULL)
+    sql: (${event_1_raw} IS NOT NULL)
       ;;
   }
 
   dimension: reached_event_2 {
     hidden: yes
     type: yesno
-    sql: (${event_1_time} IS NOT NULL AND ${event_2_first_time} IS NOT NULL AND ${event_1_time} < ${event_2_last_time})
+    sql: (${event_1_raw} IS NOT NULL AND ${event_2_first_raw} IS NOT NULL AND ${event_1_raw} < ${event_2_last_raw})
       ;;
   }
 
   dimension: reached_event_3 {
     hidden: yes
     type: yesno
-    sql: (${event_1_time} IS NOT NULL AND ${event_2_last_time} IS NOT NULL AND ${event_3_last_time}  IS NOT NULL
-      AND ${event_1_time} < ${event_2_last_time} AND ${event_1_time} < ${event_3_last_time} AND ${event_2_first_time} < ${event_3_last_time})
+    sql: (${event_1_raw} IS NOT NULL AND ${event_2_last_raw} IS NOT NULL AND ${event_3_last_raw}  IS NOT NULL
+      AND ${event_1_raw} < ${event_2_last_raw} AND ${event_1_raw} < ${event_3_last_raw} AND ${event_2_first_raw} < ${event_3_last_raw})
        ;;
   }
 
   dimension: reached_event_4 {
     hidden: yes
     type: yesno
-    sql: (${event_1_time} IS NOT NULL AND ${event_2_last_time} IS NOT NULL AND ${event_3_last_time}  IS NOT NULL AND ${event_4_last_time} IS NOT NULL
-      AND ${event_1_time} < ${event_2_last_time} AND ${event_1_time} < ${event_3_last_time} AND ${event_1_time} < ${event_4_last_time} AND ${event_2_first_time} < ${event_3_last_time} AND ${event_2_first_time} < ${event_4_last_time} AND ${event_3_first_time} < ${event_4_last_time})
+    sql: (${event_1_raw} IS NOT NULL AND ${event_2_last_raw} IS NOT NULL AND ${event_3_last_raw}  IS NOT NULL AND ${event_4_last_raw} IS NOT NULL
+      AND ${event_1_raw} < ${event_2_last_raw} AND ${event_1_raw} < ${event_3_last_raw} AND ${event_1_raw} < ${event_4_last_raw} AND ${event_2_first_raw} < ${event_3_last_raw} AND ${event_2_first_raw} < ${event_4_last_raw} AND ${event_3_first_raw} < ${event_4_last_raw})
  ;;
   }
 
@@ -338,6 +337,6 @@ view: funnel_explorer {
   }
 
   set: detail {
-    fields: [unique_session_id, user_id, session_start_time]
+    fields: [unique_session_id, user_id, session_start_time,session_facts.session_revenue,session_facts.minutes_session_length]
   }
 }
