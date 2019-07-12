@@ -55,3 +55,8 @@ Generally gaming event data should be in an event log, each event should contain
 ### What if I find an error? Suggestions for improvements?
 
 Great! Blocks were designed for continuous improvement through the help of the entire Looker community, and we'd love your input. To log an error or improvement recommendations, simply create a "New Issue" in the corresponding [Github repo for this Block](https://github.com/llooker/gaming_demo_block/issues). Please be as detailed as possible in your explanation, and we'll address it as quick as we can.
+
+### Sreenshots
+![1](https://user-images.githubusercontent.com/47784/61128655-6c4ea600-a4aa-11e9-9849-6d325f2d65c5.png)
+![2](https://user-images.githubusercontent.com/47784/61128656-6c4ea600-a4aa-11e9-87e5-4b65b309e23b.png)
+![3](https://user-images.githubusercontent.com/47784/61128657-6c4ea600-a4aa-11e9-80f0-ec3f17a3e9fc.png)
