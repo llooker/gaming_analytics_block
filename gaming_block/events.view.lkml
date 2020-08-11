@@ -1,6 +1,20 @@
 include: "/upstream_views/raw_events.view.lkml"
 view: events {
+  sql_table_name: @{events_table} ;;
   extends: [raw_events]
+
+# Configured fields from manifest file:
+dimension_group: event { type:time sql: ${TABLE}.@{timestamp_field} ;;}
+dimension: user_id { type:string sql: ${TABLE}.@{user_id_field} ;; }
+dimension: event_name { type:string sql: ${TABLE}.@{event_name_field} ;; }
+dimension: country { type: string sql: ${TABLE}.@{country_field} ;;}
+dimension: device_platform { type: string sql: ${TABLE}.@{platform_field} ;; }
+dimension: game_version { type: string sql: ${TABLE}.@{version_field} ;; }
+dimension: game_name { type: string sql: ${TABLE}.@{game_name_field} ;; }
+dimension: acquisition_cost { type:number description: "How much did this player cost to acquire?" sql: ${TABLE}.@{acquisition_cost_field} ;;}
+dimension: iap_revenue { type:number description: "Amount of $ paid for this purchase" sql: ${TABLE}.@{iap_revenue_field} ;;}
+dimension: ad_revenue { type:number description: "Amount of $ made by watching an ad" sql: ${TABLE}.@{ad_revenue_field} ;;}
+
 
 
 # Drill Selector
@@ -158,7 +172,7 @@ dimension: drill_field {
   dimension: days_since_user_signup {
     type: number
     description: "Days since first seen (from today)"
-    sql:  DATE_DIFF(${current_date}, ${user_first_seen_date}, DAY);;
+    sql:  DATE_DIFF(${current_date}, ${user_facts.player_first_seen}, DAY);;
   }
 
 
@@ -169,7 +183,7 @@ dimension: drill_field {
     group_label: "Retention"
     description: "Days since first seen (from event date)"
     type:  number
-    sql:  DATE_DIFF(${event_date}, ${user_first_seen_date}, DAY);;
+    sql:  DATE_DIFF(${event_date}, ${user_facts.player_first_seen}, DAY);;
   }
 
  # D1
@@ -327,7 +341,7 @@ dimension: drill_field {
     group_label: "User Acquistion"
     description: "Total spent to acquire users"
     type: sum
-    sql: ${install_cost} ;;
+    sql: ${acquisition_cost} ;;
     value_format_name: large_usd
     drill_fields: [drill_field,total_install_spend]
   }

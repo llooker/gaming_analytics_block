@@ -603,7 +603,7 @@
     type: single_value
     fields: [events.d7_retention_rate]
     filters:
-      events.user_first_seen_date: 30 days ago for 30 days
+      user_facts.player_first_seen: 30 days ago for 30 days
     limit: 500
     column_limit: 50
     note_state: collapsed
@@ -627,7 +627,7 @@
     type: single_value
     fields: [events.d1_retention_rate]
     filters:
-      events.user_first_seen_date: 30 days ago for 30 days
+      user_facts.player_first_seen: 30 days ago for 30 days
     limit: 500
     column_limit: 50
     note_state: collapsed
@@ -651,7 +651,7 @@
     type: single_value
     fields: [events.d14_retention_rate]
     filters:
-      events.user_first_seen_date: 30 days ago for 30 days
+      user_facts.player_first_seen: 30 days ago for 30 days
     limit: 500
     column_limit: 50
     note_state: collapsed
@@ -835,10 +835,10 @@
     model: gaming
     explore: events
     type: looker_line
-    fields: [events.d1_retention_rate, events.user_first_seen_date, events.d7_retention_rate]
+    fields: [events.d1_retention_rate, user_facts.player_first_seen, events.d7_retention_rate]
     filters:
-      events.user_first_seen_date: 30 days ago for 30 days
-    sorts: [events.user_first_seen_date desc]
+      user_facts.player_first_seen: 30 days ago for 30 days
+    sorts: [user_facts.player_first_seen desc]
     limit: 500
     column_limit: 50
     color_application:

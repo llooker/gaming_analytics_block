@@ -8,16 +8,16 @@ view: events_sessionized {
     sql: SELECT
       events.*
     , sessions.unique_session_id
-    , ROW_NUMBER () OVER (PARTITION BY unique_session_id ORDER BY events.event) AS event_sequence_within_session
-    , ROW_NUMBER () OVER (PARTITION BY unique_session_id ORDER BY events.event desc) AS inverse_event_sequence_within_session
+    , ROW_NUMBER () OVER (PARTITION BY unique_session_id ORDER BY events.@timestamp_field) AS event_sequence_within_session
+    , ROW_NUMBER () OVER (PARTITION BY unique_session_id ORDER BY events.@timestamp_field desc) AS inverse_event_sequence_within_session
 FROM gaming_demo_dev.raw_events AS events
 INNER JOIN ${sessions.SQL_TABLE_NAME} AS sessions
   ON events.user_id = sessions.user_id
-  AND events.event >= sessions.session_start
-  AND events.event < sessions.next_session_start
+  AND events.@timestamp_field >= sessions.session_start
+  AND events.@timestamp_field < sessions.next_session_start
  ;;
     datagroup_trigger: events_raw
-    partition_keys: ["event"]
+    partition_keys: ["@timestamp_field"]
     cluster_keys: ["game_name"]
   }
 
