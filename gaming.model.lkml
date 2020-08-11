@@ -1,7 +1,7 @@
 connection: "gaming_events"
 
-include: "*.view.lkml"                       # include all views in this project
-include: "*.dashboard.lookml"   # include a LookML dashboard called my_dashboard
+include: "/*/*.view.lkml"                       # include all views in this project
+include: "/lookml_dashboards/*.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 # Model Configuration
 datagroup: events_raw { sql_trigger:  SELECT current_date  ;; }
@@ -29,12 +29,6 @@ explore: events {
     relationship: many_to_one
     sql_on: ${events.user_id} = ${user_facts.user_id} ;;
   }
-
-  join: user_tiering {
-    view_label: "User Lifetime Values"
-    relationship: many_to_one
-    sql_on: ${events.user_id}  = ${user_tiering.user_id} ;;
-  }
 }
 
 explore: funnel_explorer {
@@ -60,12 +54,6 @@ explore: funnel_explorer {
     sql_on: ${funnel_explorer.user_id} = ${user_facts.user_id} ;;
     relationship: many_to_one
   }
-
-  join: user_tiering {
-    view_label: "User Facts"
-    sql_on: ${funnel_explorer.user_id} = ${user_tiering.user_id} ;;
-    relationship: many_to_one
-  }
 }
 
 explore: session_facts {
@@ -74,10 +62,5 @@ explore: session_facts {
   join: user_facts {
     relationship: many_to_one
     sql_on: ${session_facts.user_id} = ${user_facts.user_id} ;;
-  }
-  join: user_tiering {
-    view_label: "User Facts"
-    relationship: many_to_one
-    sql_on: ${session_facts.user_id} = ${user_tiering.user_id} ;;
   }
 }

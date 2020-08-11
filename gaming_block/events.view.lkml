@@ -1,4 +1,4 @@
-include: "raw_events.view.lkml"
+include: "/upstream_views/raw_events.view.lkml"
 view: events {
   extends: [raw_events]
 
