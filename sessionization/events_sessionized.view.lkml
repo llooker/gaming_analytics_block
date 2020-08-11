@@ -10,7 +10,7 @@ view: events_sessionized {
     , sessions.unique_session_id
     , ROW_NUMBER () OVER (PARTITION BY unique_session_id ORDER BY events.@timestamp_field) AS event_sequence_within_session
     , ROW_NUMBER () OVER (PARTITION BY unique_session_id ORDER BY events.@timestamp_field desc) AS inverse_event_sequence_within_session
-FROM gaming_demo_dev.raw_events AS events
+FROM ${events.SQL_TABLE_NAME} AS events
 INNER JOIN ${sessions.SQL_TABLE_NAME} AS sessions
   ON events.user_id = sessions.user_id
   AND events.@timestamp_field >= sessions.session_start
