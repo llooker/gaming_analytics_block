@@ -813,7 +813,7 @@
     model: gaming
     explore: events
     type: table
-    fields: [events.number_of_ads_shown, events.total_ad_revenue, events.ad_network]
+    fields: [events.number_of_ads_shown, events.total_ad_revenue, events.install_source]
     filters:
       events.number_of_ads_shown: ">1000"
     sorts: [revenue_per_ad_shown desc]

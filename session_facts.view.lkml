@@ -71,7 +71,7 @@ view: session_facts {
     sql: ${TABLE}.session_end ;;
   }
 
-  dimension: session_sequence_for_user {
+  dimension: player_session_sequence {
     type: number
     sql: ${TABLE}.session_sequence_for_user ;;
   }
@@ -142,7 +142,7 @@ view: session_facts {
       unique_session_id,
       session_start_at_time,
       session_end_at_time,
-      session_sequence_for_user,
+      player_session_sequence,
       inverse_session_sequence_for_user,
       number_of_events_in_session,
       session_first_event,

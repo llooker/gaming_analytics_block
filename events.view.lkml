@@ -76,7 +76,7 @@ dimension: drill_field {
 
   dimension: is_first_session {
     type: yesno
-    sql: ${player_session_sequence} = '1' ;;
+    sql: ${session_facts.player_session_sequence} = '1' ;;
   }
 
 
@@ -104,7 +104,8 @@ dimension: drill_field {
   }
 
   measure: number_of_paid_users {
-    group_label: "Number of non-organic users"
+    group_label: "User Counts"
+    label: "Number of non-organic users"
     type: count_distinct
     sql: ${user_id};;
     filters: {
@@ -148,7 +149,7 @@ dimension: drill_field {
 
   measure: number_of_sesssions {
     type: count_distinct
-    sql: concat(${user_id},${player_session_sequence}) ;;
+    sql: concat(${user_id},${session_facts.player_session_sequence}) ;;
     drill_fields: [drill_field,number_of_sesssions]
   }
 
