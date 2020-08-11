@@ -76,7 +76,7 @@ dimension: drill_field {
 
   dimension: is_first_session {
     type: yesno
-    sql: ${session_facts.player_session_sequence} = '1' ;;
+    sql: ${sessions.player_session_sequence} = '1' ;;
   }
 
 
@@ -145,12 +145,6 @@ dimension: drill_field {
     value_format_name: decimal_2
     sql: 1.0 * ${number_of_ads_shown} / NULLIF(${number_of_users},0) ;;
     drill_fields: [drill_field,ads_shown_per_user]
-  }
-
-  measure: number_of_sesssions {
-    type: count_distinct
-    sql: concat(${user_id},${session_facts.player_session_sequence}) ;;
-    drill_fields: [drill_field,number_of_sesssions]
   }
 
 # Misc
@@ -629,24 +623,6 @@ measure: total_iap_revenue {
     type: number
     sql: 1.0 * ${total_d30_revenue}/ NULLIF(${d30_retained_users},0);;
     drill_fields: [drill_field,d30_revenue_per_retained_user]
-  }
-
-  #### Sessionization
-  dimension: unique_session_id {
-    type: string
-    sql: ${TABLE}.unique_session_id ;;
-  }
-
-  dimension: event_sequence_within_session {
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.event_sequence_within_session ;;
-  }
-
-  dimension: inverse_event_sequence_within_session {
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.inverse_event_sequence_within_session ;;
   }
 
   ### For Calculating User Fact Table with Native Derived Table

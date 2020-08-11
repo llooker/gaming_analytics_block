@@ -12,7 +12,7 @@ view: user_facts {
       column: total_revenue {}
       column: total_iap_revenue {}
       column: total_revenue_after_UA {}
-      column: number_of_sessions { field: session_facts.number_of_sessions }
+      column: number_of_sessions { field: sessions.number_of_sessions }
       column: cost_per_install {}
       column: d1_retained_users {}
       column: d7_retained_users {}
