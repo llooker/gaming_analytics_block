@@ -17,7 +17,7 @@ view: last {
               SELECT user_id,
                      @{timestamp_field},
                      LAG(@{timestamp_field},1) OVER (PARTITION BY user_id ORDER BY @{timestamp_field}) AS last_event
-                 FROM ${events.SQL_TABLE_NAME}
+                 FROM ${events.SQL_TABLE_NAME} LIMIT 10000000
                  -- WHERE event_name NOT IN('XX','YY') --don't look at every single event to limit rows needed
                   )
        ;;
