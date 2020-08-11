@@ -7,8 +7,10 @@ view: last {
   derived_table: {
     datagroup_trigger: sessions
     sql:
-      SELECT *,
-              CASE WHEN TIMESTAMP_DIFF(event, last_event),MINUTE) >= 20 --session timout = 20 minutes
+      SELECT
+              user_id,
+              event,
+              CASE WHEN TIMESTAMP_DIFF(event, last_event,MINUTE) >= 20 --session timout = 20 minutes
                      OR last_event IS NULL
                    THEN 1 ELSE 0 END AS is_new_session
          FROM (
@@ -16,9 +18,8 @@ view: last {
                      event,
                      LAG(event,1) OVER (PARTITION BY user_id ORDER BY event) AS last_event
                  FROM ${events.SQL_TABLE_NAME}
-        --WHERE
-        --   event_name IN('user_engagement','screen_view') --don't look at every single event to limit rows needed
-        )
+                 -- WHERE event_name NOT IN('XX','YY') --don't look at every single event to limit rows needed
+                  )
        ;;
   }
   dimension: is_new_session {
@@ -28,26 +29,28 @@ view: last {
 view: sessions {
   derived_table: {
     datagroup_trigger:sessions
+    partition_keys: ["session_start"]
     sql: SELECT unique_session_id,
-      user_session_id,
+      player_session_sequence,
        user_id,
        MAX(event) as session_end,
        MIN(event) as session_start,
-       TIMESTAMP_DIFF((MAX(event) - MIN(event),MINUTE) AS session_length_minutes
+       TIMESTAMP_DIFF(MAX(event), MIN(event),MINUTE) AS session_length_minutes
   FROM (
 SELECT user_id,
-       event
-      , SUM(is_new_session) OVER (ORDER BY user_id, event) AS unique_session_id,
+       event,
+       CASE WHEN is_new_session = 1 then GENERATE_UUID() else null END AS unique_session_id,
        SUM(is_new_session) OVER (PARTITION BY user_id ORDER BY event) AS player_session_sequence
   FROM ${last.SQL_TABLE_NAME} as final
        ) session
- GROUP BY 1,2,3
+WHERE unique_session_id is not null
+GROUP BY 1,2,3
  ;;
   }
 
   dimension: unique_session_id {
     primary_key: yes
-    type: number
+    type: string
     sql: ${TABLE}.unique_session_id ;;
   }
 
