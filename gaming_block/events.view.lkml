@@ -172,7 +172,7 @@ dimension: drill_field {
   dimension: days_since_user_signup {
     type: number
     description: "Days since first seen (from today)"
-    sql:  DATE_DIFF(${current_date}, ${user_facts.player_first_seen}, DAY);;
+    sql:  DATE_DIFF(${current_date}, ${user_facts.player_first_seen_date}, DAY);;
   }
 
 
@@ -183,7 +183,7 @@ dimension: drill_field {
     group_label: "Retention"
     description: "Days since first seen (from event date)"
     type:  number
-    sql:  DATE_DIFF(${event_date}, ${user_facts.player_first_seen}, DAY);;
+    sql:  DATE_DIFF(${event_date}, ${user_facts.player_first_seen_date}, DAY);;
   }
 
  # D1
