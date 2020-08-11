@@ -39,7 +39,7 @@ view: sessions {
   FROM (
 SELECT user_id,
        @{timestamp_field},
-      , SUM(is_new_session) OVER (ORDER BY user_id, @{timestamp_field}) AS unique_session_id,
+       SUM(is_new_session) OVER (ORDER BY user_id, @{timestamp_field}) AS unique_session_id,
        SUM(is_new_session) OVER (PARTITION BY user_id ORDER BY @{timestamp_field}) AS player_session_sequence
   FROM ${last.SQL_TABLE_NAME} as final
        ) session
