@@ -24,7 +24,7 @@ constant: version_field {
 
 ## What is the game name field? (for schemas with multiple fields)
 constant: game_name_field {
-  value: "game_name"
+  value: "device_platform"
 }
 
 ## What is the user/player ID field?
@@ -39,7 +39,7 @@ constant: event_name_field {
 
 ## What is name of the acquisition cost field?
 constant: acquisition_cost_field {
-  value: "install_cost"
+  value: "event_name"
 }
 
 
